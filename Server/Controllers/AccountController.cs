@@ -11,11 +11,11 @@ namespace WebApplicationStock.Server.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
-        private UserAccountService _userAccountService;
+        private IUserAccountService _userAccountService;
 
         private readonly DataContext _context;
 
-        public AccountController(UserAccountService userAccountService)
+        public AccountController(IUserAccountService userAccountService)
         {
             _userAccountService = userAccountService;
         }
@@ -23,12 +23,12 @@ namespace WebApplicationStock.Server.Controllers
         [HttpGet]
         public async Task<IActionResult> List()
         {
-            var users = await _userAccountService.List();
+            var users = await _userAccountService.ListUsers();
             return Ok(users);
         }
 
         [HttpPost]
-        [Route("Login")]
+        [Route("login")]
         [AllowAnonymous]
 
         //Define a method named Login which will accept LoginRequest and will return a user session object

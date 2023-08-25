@@ -13,7 +13,8 @@ namespace WebApplicationStock.Server.Authentication
         {
             _context = context;
         }
-        public async Task<List<UserAccount>> List()
+
+        public async Task<List<UserAccount>> ListUsers()
         {
             var users = await (from user in _context.UserAccounts select new UserAccount()
             {
@@ -26,6 +27,11 @@ namespace WebApplicationStock.Server.Authentication
 
         public UserAccount? GetUserAccountByUsername(string userName)
         {
+            if (_userAccountList == null) 
+            {
+                _userAccountList = ListUsers().Result;    
+            }
+
             return _userAccountList.FirstOrDefault(x => x.Username == userName);
         }
     }

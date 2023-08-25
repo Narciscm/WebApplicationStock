@@ -29,9 +29,9 @@
 @code {
     //Create an object to fetch data data from the inputs
     private LoginRequest loginRequest = new LoginRequest();
-    private async Task Authenticate()
+    private async void Authenticate()
     {
-        var loginResponse = await httpClient.PostAsJsonAsync<LoginRequest>("/api/Account/Login", loginRequest);
+        var loginResponse = await httpClient.PostAsJsonAsync<LoginRequest>("/api/account/login", loginRequest);
 
         if (loginResponse.IsSuccessStatusCode)
         {

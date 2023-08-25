@@ -11,9 +11,9 @@ namespace WebApplicationStock.Server.Authentication
         public const string JWT_SECURITY_KEY = "abcdefghijklmnopq12345sdgfdhjgfhjfg"; //Define a security key
         private const int JWT_TOKEN_VALIDITY_MINS = 20; //Define how many minutes the key is valid
 
-        private UserAccountService _userAccountService;
+        private IUserAccountService _userAccountService;
 
-        public JwtAuthenticationManager(UserAccountService userAccountService)
+        public JwtAuthenticationManager(IUserAccountService userAccountService)
         {
             _userAccountService = userAccountService;
         }
