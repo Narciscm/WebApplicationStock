@@ -5,6 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using WebApplicationStock.Server.Authentication;
 using WebApplicationStock.Server.Data;
+using WebApplicationStock.Client.Services.PersonService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+//Inject the service for Dbcontext;register Db context
 builder.Services.AddDbContext<DataContext>(options => { options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")); });
 builder.Services.AddScoped<IUserAccountService, UserAccountService>();
 builder.Services.AddAuthentication(o =>

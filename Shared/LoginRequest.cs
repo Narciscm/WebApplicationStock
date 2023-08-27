@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace WebApplicationStock.Shared
 {
+    //Class with prop to login users
     public class LoginRequest
     {
         public string Username { get; set; }

@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplicationStock.Server", "Server\WebApplicationStock.Server.csproj", "{85223CD8-8440-4F31-8482-126121758B23}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplicationStock.Server", "Server\WebApplicationStock.Server.csproj", "{85223CD8-8440-4F31-8482-126121758B23}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplicationStock.Client", "Client\WebApplicationStock.Client.csproj", "{F76A8204-898D-48FF-A2C6-C1DDF5B5D954}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplicationStock.Client", "Client\WebApplicationStock.Client.csproj", "{F76A8204-898D-48FF-A2C6-C1DDF5B5D954}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplicationStock.Shared", "Shared\WebApplicationStock.Shared.csproj", "{684DCBBF-CBC6-48D4-A4B0-EC1A70F59FE7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplicationStock.Shared", "Shared\WebApplicationStock.Shared.csproj", "{684DCBBF-CBC6-48D4-A4B0-EC1A70F59FE7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

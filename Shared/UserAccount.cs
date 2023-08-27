@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace WebApplicationStock.Shared
 {
+    //Class with prop to create user accounts
     public class UserAccount
     {
         public int Id { get; set; }

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using WebApplicationStock.Client.Services.PersonService;
 using WebApplicationStock.Server.Authentication;
 using WebApplicationStock.Server.Data;
 using WebApplicationStock.Shared;
@@ -21,7 +21,7 @@ namespace WebApplicationStock.Server.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> List()
+        public async Task<IActionResult> ListofUsers()
         {
             var users = await _userAccountService.ListUsers();
             return Ok(users);

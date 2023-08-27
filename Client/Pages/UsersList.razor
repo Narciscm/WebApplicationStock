@@ -1,0 +1,45 @@
+﻿@page "/userslist"
+@using WebApplicationStock.Client.Authentication;
+@using WebApplicationStock.Shared;
+@attribute [Authorize(Roles = "Admin")]
+@inject HttpClient Http
+@inject AuthenticationStateProvider authenticationStateProvider
+@inject NavigationManager navManager
+@inject IPersonService PersonService
+
+<PageTitle>List of users</PageTitle>
+
+<h1>List of users</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Role</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+    </tbody>
+</table>
+
+@if (PersonService.Persons.Count <= 0)
+{
+    <span>Loading..</span>
+}
+else
+{
+    <ul>
+        @foreach (var person in PersonService.Persons)
+        {
+            <li>@person.Username - @person.Password - @person.Role</li>
+        }
+    </ul>
+}
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await PersonService.GetPersons();
+    }
+}
