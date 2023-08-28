@@ -15,27 +15,24 @@
     <thead>
         <tr>
             <th>Username</th>
+            <th>Password</th>
             <th>Role</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
-        
-    </tbody>
-</table>
-
-@if (PersonService.Persons.Count <= 0)
-{
-    <span>Loading..</span>
-}
-else
-{
-    <ul>
         @foreach (var person in PersonService.Persons)
         {
-            <li>@person.Username - @person.Password - @person.Role</li>
+            <tr>
+                <td>@person.Username</td>
+                <td>@person.Password</td>
+                <td>@person.Role</td>
+                <td>
+                </td>
+            </tr>
         }
-    </ul>
-}
+    </tbody>
+</table>
 
 @code {
     protected override async Task OnInitializedAsync()

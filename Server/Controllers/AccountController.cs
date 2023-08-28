@@ -42,5 +42,25 @@ namespace WebApplicationStock.Server.Controllers
             else
                 return userSession;
         }
+
+        //Delete a user
+        [HttpPost]
+        public async Task<ActionResult<UserAccount>> CreateUser(UserAccount userAccount)
+        {
+            _context.UserAccounts.Add(userAccount);
+            await _context.SaveChangesAsync();
+
+            return Ok(userAccount);
+        }
+
+        //Delete a user
+        [HttpDelete]
+        public async Task<ActionResult<UserAccount>> DeleteUser(UserAccount userAccount)
+        {
+            _context.UserAccounts.Remove(userAccount);
+            await _context.SaveChangesAsync();
+
+            return Ok(userAccount);
+        }
     }
 }

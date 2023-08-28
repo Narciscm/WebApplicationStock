@@ -1,0 +1,11 @@
+﻿@page "/user"
+@page "/user/{id:int}"
+@inject IPersonService PersonService
+
+<h3>User</h3>
+
+@code {
+    [Parameter]
+    public int? Id { get; set; }
+
+}

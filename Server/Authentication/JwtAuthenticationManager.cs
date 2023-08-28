@@ -6,7 +6,7 @@ using WebApplicationStock.Shared;
 
 namespace WebApplicationStock.Server.Authentication
 {
-    public class JwtAuthenticationManager
+    public class JwtAuthenticationManager //used to generate the JWT token
     {
         public const string JWT_SECURITY_KEY = "abcdefghijklmnopq12345sdgfdhjgfhjfg"; //Define a security key
         private const int JWT_TOKEN_VALIDITY_MINS = 20; //Define how many minutes the key is valid

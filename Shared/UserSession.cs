@@ -8,7 +8,7 @@ namespace WebApplicationStock.Shared
 {
     public class UserSession
     {
-        //Define 5 properties
+        //Class with prop to for user session
         public string Username { get; set; }
         public string Token { get; set; }
         public string Role { get; set; }

@@ -13,9 +13,14 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+
 //Inject the service for Dbcontext;register Db context
 builder.Services.AddDbContext<DataContext>(options => { options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")); });
+
+//Add dependency for UserAccountService
 builder.Services.AddScoped<IUserAccountService, UserAccountService>();
+
+//Do the dependency injection for JwtAuthenticationManager
 builder.Services.AddAuthentication(o =>
 {
     o.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -50,6 +55,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+//Do the dependency injection for JwtAuthenticationManager
 app.UseAuthentication();
 app.UseAuthorization();
 
