@@ -13,6 +13,6 @@ namespace WebApplicationStock.Server.Data
         { }
 
         //Create a DbSet prop to use UserAccounts list
-        public DbSet<UserAccount>? UserAccounts { get; set; }
+        public DbSet<UserAccount> UserAccounts { get; set; }
     }
 }

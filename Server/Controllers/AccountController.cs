@@ -20,6 +20,7 @@ namespace WebApplicationStock.Server.Controllers
             _userAccountService = userAccountService;
         }
 
+        //Get list of all users
         [HttpGet]
         public async Task<IActionResult> ListofUsers()
         {
@@ -43,24 +44,54 @@ namespace WebApplicationStock.Server.Controllers
                 return userSession;
         }
 
-        //Delete a user
+        //Get user by ID
+        [HttpGet("{id}")]
+        public async Task<ActionResult<UserAccount>> GetSingleUser(int id)
+        {
+            var user = _userAccountService.GetUserAccountById(id);
+            if (user == null)
+            {
+                return NotFound("Sorry, no user here.");
+            }
+            return Ok(user);
+        }
+
+        //Create a user
         [HttpPost]
         public async Task<ActionResult<UserAccount>> CreateUser(UserAccount userAccount)
         {
-            _context.UserAccounts.Add(userAccount);
-            await _context.SaveChangesAsync();
+            userAccount.Role = "Account";
+            _userAccountService.AddUser(userAccount);
 
-            return Ok(userAccount);
+            return Ok(new List<UserAccount> { userAccount });
+        }
+
+        //Update user
+        [HttpPut("{id}")]
+        public async Task<ActionResult<List<UserAccount>>> UpdateUser(UserAccount userAccount, int id)
+        {
+            var user = _userAccountService.GetUserAccountById(id);
+            if (user == null)
+                return NotFound("Sorry, no user here.");
+            user.Username= userAccount.Username;
+            user.Password= userAccount.Password;
+
+            //await _context.SaveChangesAsync();\
+            _userAccountService.UpdateUser(userAccount);
+
+            return Ok(new List<UserAccount> { userAccount });
         }
 
         //Delete a user
-        [HttpDelete]
-        public async Task<ActionResult<UserAccount>> DeleteUser(UserAccount userAccount)
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<UserAccount>> DeleteUser(int id)
         {
-            _context.UserAccounts.Remove(userAccount);
-            await _context.SaveChangesAsync();
+            var user = _userAccountService.GetUserAccountById(id);
+            if (user == null)
+                return NotFound("Sorry, no user here.");
+            _userAccountService.DeleteUser(user);
 
-            return Ok(userAccount);
+            return Ok();
         }
     }
 }

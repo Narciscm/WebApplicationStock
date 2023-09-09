@@ -1,11 +1,75 @@
 ﻿@page "/user"
 @page "/user/{id:int}"
+@using WebApplicationStock.Client.Authentication;
+@using WebApplicationStock.Shared;
+@attribute [Authorize(Roles = "Admin")]
+@inject HttpClient Http
+@inject AuthenticationStateProvider authenticationStateProvider
+@inject NavigationManager navManager
 @inject IPersonService PersonService
 
-<h3>User</h3>
+
+@if(Id == null)
+{
+    <PageTitle>Create a new user</PageTitle>
+    <h3>Create a new User</h3>
+}
+else
+{
+    <PageTitle>Edit @user.Username</PageTitle>
+    <h3>Edit @user.Username</h3>
+}
+
+<EditForm Model="user" OnSubmit="HandleSubmit">
+    <div>
+        <label for="username">User Name</label>
+        <InputText id="username" @bind-Value="user.Username" class="form-control"></InputText>
+    </div>
+    <div>
+        <label for="password">Password</label>
+        <InputText id="pasword" @bind-Value="user.Password" class="form-control"></InputText>
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary">@btnText</button>
+</EditForm>
 
 @code {
     [Parameter]
     public int? Id { get; set; }
 
+    string btnText = string.Empty;
+
+    UserAccount user = new UserAccount();
+
+    protected override async Task OnInitializedAsync()
+    {
+        btnText = Id == null ? "Save new user" : "Update user";
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if(Id==null)
+        {
+        //
+        }
+        else
+        {
+            user = await PersonService.GetPersonById((int)Id);
+        }
+    }
+
+    async Task HandleSubmit()
+    {
+        if(Id==null)
+        {
+            await PersonService.CreatePersons(user);
+        }
+        else
+        {
+            await PersonService.UpdateUser(user);
+        }
+    }
+
 }
+
+

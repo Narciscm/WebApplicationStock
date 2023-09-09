@@ -5,6 +5,8 @@
 @inject HttpClient Http
 @inject AuthenticationStateProvider authenticationStateProvider
 @inject NavigationManager navManager
+@inject NavigationManager NavigationManager
+
 @inject IPersonService PersonService
 
 <PageTitle>List of users</PageTitle>
@@ -28,15 +30,41 @@
                 <td>@person.Password</td>
                 <td>@person.Role</td>
                 <td>
+                    <button class="btn btn-primary" @onclick="(() => ShowUser(person.Id))"><i class="oi oi-pencil"></i></button>
+                    <button type="button" class="btn btn-danger" @onclick="(() => DeleteUser(person.Id))">Delete User</button>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+<button class="btn btn-primary" @onclick="CreateNewUser">Create new User</button>
 
 @code {
+
     protected override async Task OnInitializedAsync()
     {
         await PersonService.GetPersons();
+    }
+
+    void ShowUser(int id)
+    {
+        NavigationManager.NavigateTo($"user/{id}");
+    }
+
+    void CreateNewUser()
+    {
+        NavigationManager.NavigateTo("/user");
+    }
+
+    async Task DeleteUser(int id)
+    {
+        await PersonService.DeletePerson(id);
+
+        var person = PersonService.Persons.FirstOrDefault(p => p.Id == id);
+        if (person != null)
+        {
+            PersonService.Persons.Remove(person);
+            StateHasChanged();
+        }
     }
 }

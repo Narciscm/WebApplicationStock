@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using WebApplicationStock.Shared;
 
 namespace WebApplicationStock.Server.Authentication
@@ -10,5 +11,15 @@ namespace WebApplicationStock.Server.Authentication
 
         //Method to get user
         UserAccount? GetUserAccountByUsername(string userName);
+
+        UserAccount? GetUserAccountById(int id);
+
+        void AddUser(UserAccount user);
+
+
+        void UpdateUser(UserAccount newUser);
+
+        void DeleteUser(UserAccount userAccount);
+
     }
 }
